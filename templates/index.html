@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Кінотека - Головна</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; background-color: #121212; }
+        h1 { color: #ffffff; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: #1e1e1e; color: #e0e0e0; }
+        th, td { border: 1px solid #333333; padding: 12px; text-align: left; }
+        th { background-color: #252525; color: #4CAF50; }
+        tr:nth-child(even) { background-color: #181818; }
+        a.btn { padding: 8px 12px; text-decoration: none; background: #28a745; color: white; border-radius: 4px; }
+        a.btn-edit { background: #ffc107; color: black; }
+        a.btn-del { background: #dc3545; color: white; }
+        .actions { margin-bottom: 20px; }
+    </style>
+</head>
+<body>
+    <h1>Каталог Фільмів (Кінотека)</h1>
+    <div class="actions">
+        <a href="/add" class="btn">Додати новий фільм</a>
+    </div>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Назва</th>
+            <th>Жанр</th>
+            <th>Рік</th>
+            <th>Режисер</th>
+            <th>Рейтинг</th>
+            <th>Дії</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie[0] }}</td>
+            <td>{{ movie[1] }}</td>
+            <td>{{ movie[2] }}</td>
+            <td>{{ movie[3] }}</td>
+            <td>{{ movie[4] }}</td>
+            <td>{{ movie[5] }}</td>
+            <td>
+                <a href="/edit/{{ movie[0] }}" class="btn btn-edit">Редагувати</a>
+                <a href="/delete/{{ movie[0] }}" class="btn btn-del" onclick="return confirm('Ви впевнені, що хочете видалити цей фільм?');">Видалити</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="7" style="text-align: center;">Список фільмів порожній.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
